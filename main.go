@@ -21,13 +21,13 @@ import (
 	//
 	//    sw "github.com/myname/myrepo/go"
 	//
-	sw "./src"
+	mineserver "github.com/leonardoneumann/minesweeperapi/api"
 )
 
 func main() {
 	log.Printf("Minesweeper Api Server started")
 
-	router := sw.NewRouter()
+	router := mineserver.NewRouter()
 
 	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), router))
 }
