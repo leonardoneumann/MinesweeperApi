@@ -30,7 +30,7 @@ func main() {
 	router := mineserver.NewRouter()
 
 	//add static folder serve
-	router.PathPrefix("/doc/").Handler(http.FileServer(http.Dir("./static/swagger/")))
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/swagger/")))
 
 	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), router))
 }
