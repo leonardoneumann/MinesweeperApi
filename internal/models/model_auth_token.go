@@ -14,7 +14,7 @@ import (
 )
 
 type AuthToken struct {
-	Token string `json:"token,omitempty"`
+	Id string `json:"id,omitempty" bson:"_id,omitempty"`
 
 	Timestamp time.Time `json:"timestamp,omitempty"`
 }

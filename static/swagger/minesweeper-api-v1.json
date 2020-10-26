@@ -16,11 +16,6 @@
   "produces": [
     "application/json"
   ],
-  "security": [
-    {
-      "api_key": []
-    }
-  ],
   "paths": {
     "/games/": {
       "get": {
@@ -358,7 +353,7 @@
     "AuthToken": {
       "type": "object",
       "properties": {
-        "token": {
+        "id": {
           "type": "string",
           "format": "uuid",
           "title": "Authentication Token"
@@ -379,7 +374,8 @@
       ],
       "properties": {
         "id": {
-          "type": "integer",
+          "type": "string",
+          "format": "uuid",
           "title": "ID",
           "readOnly": true
         },
