@@ -25,13 +25,14 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 	err := collection.FindOne(context.TODO(), filter).Decode(&user)
 
 	if err != nil {
-		helper.GetError(err, w)
+		database.GetError(err, w)
 		return
 	} else {
 		var token models.AuthToken
 		token.Timestamp = time.Now()
-		tokens := database.Connect("authTokens")
-		result, err := collection.InsertOne(context.TODO(), token)
+
+		tokensCol := database.Connect("authTokens")
+		result, err := tokensCol.InsertOne(context.TODO(), token)
 
 		if err != nil {
 			database.GetError(err, w)
