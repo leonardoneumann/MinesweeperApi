@@ -19,7 +19,7 @@ import (
 
 func main() {
 	port := os.Getenv("PORT")
-	log.Printf("Minesweeper Api Server Started ! - Listening on port : " + port)
+	log.Printf("Minesweeper Api Server Started ! - Listening on port   : " + port)
 
 	router := mineserver.NewRouter()
 
