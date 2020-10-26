@@ -699,7 +699,7 @@ margin-bottom: 20px;
         defs["AuthToken"] = {
   "type" : "object",
   "properties" : {
-    "token" : {
+    "id" : {
       "type" : "string",
       "format" : "uuid",
       "title" : "Authentication Token"
@@ -839,7 +839,8 @@ margin-bottom: 20px;
   "required" : [ "email", "password", "username" ],
   "properties" : {
     "id" : {
-      "type" : "integer",
+      "type" : "string",
+      "format" : "uuid",
       "title" : "ID",
       "readOnly" : true
     },
@@ -955,7 +956,7 @@ margin-bottom: 20px;
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Games-getGame-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/games/{id}/"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://lknminesweeper.herokuapp.com/api/games/{id}/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Games-getGame-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -969,14 +970,7 @@ import java.util.*;
 public class GamesApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         GamesApi apiInstance = new GamesApi();
         String id = id_example; // String | A uuid/guid value identifying this game.
         try {
@@ -1013,14 +1007,7 @@ public class GamesApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Games-getGame-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-String *id = id_example; // A uuid/guid value identifying this game.
+                              <pre class="prettyprint"><code class="language-cpp">String *id = id_example; // A uuid/guid value identifying this game.
 
 GamesApi *apiInstance = [[GamesApi alloc] init];
 
@@ -1038,13 +1025,6 @@ GamesApi *apiInstance = [[GamesApi alloc] init];
 
                             <div class="tab-pane" id="examples-Games-getGame-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.GamesApi()
 
@@ -1079,11 +1059,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new GamesApi();
             var id = id_example;  // String | A uuid/guid value identifying this game.
 
@@ -1106,11 +1081,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\GamesApi();
 $id = id_example; // String | A uuid/guid value identifying this game.
 
@@ -1127,11 +1097,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::GamesApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::GamesApi->new();
 my $id = id_example; # String | A uuid/guid value identifying this game.
@@ -1151,11 +1116,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.GamesApi()
@@ -1285,7 +1245,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Games-listGames-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/games/"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://lknminesweeper.herokuapp.com/api/games/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Games-listGames-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1299,14 +1259,7 @@ import java.util.*;
 public class GamesApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         GamesApi apiInstance = new GamesApi();
         try {
             array[Game] result = apiInstance.listGames();
@@ -1341,14 +1294,7 @@ public class GamesApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Games-listGames-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-
+                              <pre class="prettyprint"><code class="language-cpp">
 GamesApi *apiInstance = [[GamesApi alloc] init];
 
 [apiInstance listGamesWithCompletionHandler: 
@@ -1365,13 +1311,6 @@ GamesApi *apiInstance = [[GamesApi alloc] init];
 
                             <div class="tab-pane" id="examples-Games-listGames-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.GamesApi()
 
@@ -1403,11 +1342,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new GamesApi();
 
             try
@@ -1429,11 +1363,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\GamesApi();
 
 try {
@@ -1449,11 +1378,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::GamesApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::GamesApi->new();
 
@@ -1472,11 +1396,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.GamesApi()
@@ -1578,7 +1497,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Games-newGame-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/games/"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://lknminesweeper.herokuapp.com/api/games/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Games-newGame-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1592,14 +1511,7 @@ import java.util.*;
 public class GamesApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         GamesApi apiInstance = new GamesApi();
         Game data = ; // Game | 
         try {
@@ -1636,14 +1548,7 @@ public class GamesApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Games-newGame-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-Game *data = ; // 
+                              <pre class="prettyprint"><code class="language-cpp">Game *data = ; // 
 
 GamesApi *apiInstance = [[GamesApi alloc] init];
 
@@ -1661,13 +1566,6 @@ GamesApi *apiInstance = [[GamesApi alloc] init];
 
                             <div class="tab-pane" id="examples-Games-newGame-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.GamesApi()
 
@@ -1702,11 +1600,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new GamesApi();
             var data = new Game(); // Game | 
 
@@ -1729,11 +1622,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\GamesApi();
 $data = ; // Game | 
 
@@ -1750,11 +1638,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::GamesApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::GamesApi->new();
 my $data = WWW::SwaggerClient::Object::Game->new(); # Game | 
@@ -1774,11 +1657,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.GamesApi()
@@ -1919,7 +1797,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Games-play-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/games/{id}/play"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://lknminesweeper.herokuapp.com/api/games/{id}/play"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Games-play-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1933,14 +1811,7 @@ import java.util.*;
 public class GamesApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         GamesApi apiInstance = new GamesApi();
         String id = id_example; // String | A uuid/guid value identifying this game.
         CellAction data = ; // CellAction | 
@@ -1979,14 +1850,7 @@ public class GamesApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Games-play-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-String *id = id_example; // A uuid/guid value identifying this game.
+                              <pre class="prettyprint"><code class="language-cpp">String *id = id_example; // A uuid/guid value identifying this game.
 CellAction *data = ; // 
 
 GamesApi *apiInstance = [[GamesApi alloc] init];
@@ -2006,13 +1870,6 @@ GamesApi *apiInstance = [[GamesApi alloc] init];
 
                             <div class="tab-pane" id="examples-Games-play-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.GamesApi()
 
@@ -2049,11 +1906,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new GamesApi();
             var id = id_example;  // String | A uuid/guid value identifying this game.
             var data = new CellAction(); // CellAction | 
@@ -2077,11 +1929,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\GamesApi();
 $id = id_example; // String | A uuid/guid value identifying this game.
 $data = ; // CellAction | 
@@ -2099,11 +1946,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::GamesApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::GamesApi->new();
 my $id = id_example; # String | A uuid/guid value identifying this game.
@@ -2124,11 +1966,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.GamesApi()
@@ -2304,7 +2141,7 @@ token pair to prove the authentication of those credentials.</p>
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Login-authenticate-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/login/"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://lknminesweeper.herokuapp.com/api/login/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Login-authenticate-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2318,14 +2155,7 @@ import java.util.*;
 public class LoginApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         LoginApi apiInstance = new LoginApi();
         LoginData data = ; // LoginData | 
         try {
@@ -2362,14 +2192,7 @@ public class LoginApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Login-authenticate-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-LoginData *data = ; // 
+                              <pre class="prettyprint"><code class="language-cpp">LoginData *data = ; // 
 
 LoginApi *apiInstance = [[LoginApi alloc] init];
 
@@ -2387,13 +2210,6 @@ LoginApi *apiInstance = [[LoginApi alloc] init];
 
                             <div class="tab-pane" id="examples-Login-authenticate-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.LoginApi()
 
@@ -2428,11 +2244,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new LoginApi();
             var data = new LoginData(); // LoginData | 
 
@@ -2455,11 +2266,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\LoginApi();
 $data = ; // LoginData | 
 
@@ -2476,11 +2282,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::LoginApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::LoginApi->new();
 my $data = WWW::SwaggerClient::Object::LoginData->new(); # LoginData | 
@@ -2500,11 +2301,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.LoginApi()
@@ -2657,7 +2453,7 @@ token if the refresh token is valid.</p>
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Refresh-refreshAuthToken-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/refresh/"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://lknminesweeper.herokuapp.com/api/refresh/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Refresh-refreshAuthToken-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2671,14 +2467,7 @@ import java.util.*;
 public class RefreshApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         RefreshApi apiInstance = new RefreshApi();
         AuthToken data = ; // AuthToken | 
         try {
@@ -2715,14 +2504,7 @@ public class RefreshApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Refresh-refreshAuthToken-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-AuthToken *data = ; // 
+                              <pre class="prettyprint"><code class="language-cpp">AuthToken *data = ; // 
 
 RefreshApi *apiInstance = [[RefreshApi alloc] init];
 
@@ -2740,13 +2522,6 @@ RefreshApi *apiInstance = [[RefreshApi alloc] init];
 
                             <div class="tab-pane" id="examples-Refresh-refreshAuthToken-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.RefreshApi()
 
@@ -2781,11 +2556,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new RefreshApi();
             var data = new AuthToken(); // AuthToken | 
 
@@ -2808,11 +2578,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\RefreshApi();
 $data = ; // AuthToken | 
 
@@ -2829,11 +2594,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RefreshApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::RefreshApi->new();
 my $data = WWW::SwaggerClient::Object::AuthToken->new(); # AuthToken | 
@@ -2853,11 +2613,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.RefreshApi()
@@ -3001,7 +2756,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-createUser-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST -H "Authorization: [[apiKey]]" "https://lknminesweeper.herokuapp.com/api/users/"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://lknminesweeper.herokuapp.com/api/users/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-createUser-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3015,14 +2770,7 @@ import java.util.*;
 public class UsersApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: api_key
-        ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-        api_key.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //api_key.setApiKeyPrefix("Token");
-
         UsersApi apiInstance = new UsersApi();
         User data = ; // User | 
         try {
@@ -3059,14 +2807,7 @@ public class UsersApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Users-createUser-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: api_key)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
-
-User *data = ; // 
+                              <pre class="prettyprint"><code class="language-cpp">User *data = ; // 
 
 UsersApi *apiInstance = [[UsersApi alloc] init];
 
@@ -3084,13 +2825,6 @@ UsersApi *apiInstance = [[UsersApi alloc] init];
 
                             <div class="tab-pane" id="examples-Users-createUser-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Minesweeper = require('minesweeper');
-var defaultClient = Minesweeper.ApiClient.instance;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix['Authorization'] = "Token"
 
 var api = new Minesweeper.UsersApi()
 
@@ -3125,11 +2859,6 @@ namespace Example
         public void main()
         {
             
-            // Configure API key authorization: api_key
-            Configuration.Default.ApiKey.Add("Authorization", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
-
             var apiInstance = new UsersApi();
             var data = new User(); // User | 
 
@@ -3152,11 +2881,6 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
 $api_instance = new Swagger\Client\Api\UsersApi();
 $data = ; // User | 
 
@@ -3173,11 +2897,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::UsersApi;
-
-# Configure API key authorization: api_key
-$WWW::SwaggerClient::Configuration::api_key->{'Authorization'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'Authorization'} = "Bearer";
 
 my $api_instance = WWW::SwaggerClient::UsersApi->new();
 my $data = WWW::SwaggerClient::Object::User->new(); # User | 
@@ -3197,11 +2916,6 @@ import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
-
-# Configure API key authorization: api_key
-swagger_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = swagger_client.UsersApi()
