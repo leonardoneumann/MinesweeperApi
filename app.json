@@ -1,12 +1,11 @@
 {
-  "name": "Start on Heroku: Go",
-  "description": "Go Getting Started Example App",
+  "name": "Minesweeper API in Go",
+  "description": "A simple minesweeper API backend",
   "keywords": [
-    "getting-started",
     "go",
-    "sample",
+    "minesweeper",
     "example"
   ],
-  "website": "http://github.com/heroku/go-getting-started",
-  "repository": "http://github.com/heroku/go-getting-started"
+  "website": "http://github.com/leonardoneumann/minesweeperapi",
+  "repository": "http://github.com/leonardoneumann/minesweeperapi"
 }
