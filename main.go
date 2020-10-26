@@ -25,9 +25,12 @@ import (
 )
 
 func main() {
-	log.Printf("Minesweeper Api Server started")
+	log.Printf("Minesweeper Api Server Started !")
 
 	router := mineserver.NewRouter()
+
+	//add static folder serve
+	router.PathPrefix("/doc/").Handler(http.FileServer(http.Dir("./static/swagger/")))
 
 	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), router))
 }

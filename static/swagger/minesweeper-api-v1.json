@@ -1,0 +1,405 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Backend API for a minesweeper game app",
+    "version": "1.0",
+    "title": "Minesweeper"
+  },
+  "host": "lknminesweeper.herokuapp.com",
+  "basePath": "/api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "paths": {
+    "/games/": {
+      "get": {
+        "tags": [
+          "games"
+        ],
+        "description": "Lists all games",
+        "operationId": "listGames",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Game Object array",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "games"
+        ],
+        "description": "Creates a new Game",
+        "operationId": "newGame",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New Game Object",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        }
+      }
+    },
+    "/games/{id}/": {
+      "get": {
+        "tags": [
+          "games"
+        ],
+        "description": "Returns an existing game",
+        "operationId": "getGame",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A uuid/guid value identifying this game.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        }
+      }
+    },
+    "/games/{id}/play": {
+      "post": {
+        "tags": [
+          "games"
+        ],
+        "description": "Makes a play on a given cell",
+        "operationId": "Play",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A uuid/guid value identifying this game.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CellAction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Game Object",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        }
+      }
+    },
+    "/login/": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+        "operationId": "authenticate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Login Success",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          },
+          "401": {
+            "description": "Login Failed"
+          }
+        }
+      }
+    },
+    "/refresh/": {
+      "post": {
+        "tags": [
+          "refresh"
+        ],
+        "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+        "operationId": "refreshAuthToken",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          }
+        }
+      }
+    },
+    "/users/": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "description": "",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid user"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "CellAction": {
+      "type": "object",
+      "required": [
+        "action",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID"
+        },
+        "action": {
+          "type": "integer",
+          "description": "Cell State:\n   * `0` - Reveal\n   * `1` - Flag\n   * `2` - Question Mark\n",
+          "title": "Action Type"
+        }
+      }
+    },
+    "Cell": {
+      "type": "object",
+      "required": [
+        "row"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "readOnly": true
+        },
+        "row": {
+          "type": "integer",
+          "title": "Row",
+          "minimum": 10,
+          "maximum": 1024
+        },
+        "col": {
+          "type": "integer",
+          "title": "Column",
+          "minimum": 10,
+          "maximum": 1024
+        },
+        "nearMines": {
+          "type": "integer",
+          "title": "Number of surrounding Mines"
+        },
+        "state": {
+          "type": "integer",
+          "description": "Cell State:\n   * `0` - Hidden\n   * `1` - Has Mine\n   * `2` - Flag\n   * `3` - Question Mark\n",
+          "title": "State"
+        }
+      }
+    },
+    "Game": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "title": "ID",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "minLength": 5,
+          "maxLength": 200
+        },
+        "state": {
+          "type": "integer",
+          "description": "Cell State:\n   * `0` - New\n   * `1` - Playing\n   * `2` - Won\n   * `3` - Lost\n",
+          "title": "State",
+          "readOnly": true
+        },
+        "started": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Started DateTime",
+          "readOnly": true
+        },
+        "finished": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Finished DateTime",
+          "readOnly": true
+        },
+        "rows": {
+          "type": "integer",
+          "title": "Number of Rows",
+          "minimum": 10,
+          "maximum": 1024
+        },
+        "cols": {
+          "type": "integer",
+          "title": "Number of Columns",
+          "minimum": 10,
+          "maximum": 1024
+        },
+        "mines": {
+          "type": "integer",
+          "title": "Mines",
+          "minimum": -2147483648,
+          "maximum": 2147483647
+        },
+        "cells": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/Cell"
+          }
+        }
+      }
+    },
+    "LoginData": {
+      "type": "object",
+      "required": [
+        "password",
+        "username"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "title": "Username",
+          "minLength": 8
+        },
+        "password": {
+          "type": "string",
+          "title": "Password",
+          "minLength": 8
+        }
+      }
+    },
+    "AuthToken": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "format": "uuid",
+          "title": "Authentication Token"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Creation Datetime"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": [
+        "email",
+        "password",
+        "username"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "readOnly": true
+        },
+        "username": {
+          "type": "string",
+          "title": "Username",
+          "minLength": 1
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "title": "Email",
+          "minLength": 1
+        },
+        "password": {
+          "type": "string",
+          "title": "Password",
+          "minLength": 8
+        }
+      }
+    }
+  }
+}
