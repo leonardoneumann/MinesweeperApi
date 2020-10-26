@@ -14,23 +14,17 @@ import (
 	"net/http"
 	"os"
 
-	// WARNING!
-	// Change this to a fully-qualified import path
-	// once you place this file into your project.
-	// For example,
-	//
-	//    sw "github.com/myname/myrepo/go"
-	//
 	mineserver "github.com/leonardoneumann/minesweeperapi/api"
 )
 
 func main() {
-	log.Printf("Minesweeper Api Server Started !")
+	port := os.Getenv("PORT")
+	log.Printf("Minesweeper Api Server Started ! - Listening on port : " + port)
 
 	router := mineserver.NewRouter()
 
 	//add static folder serve
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/swagger/")))
 
-	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
